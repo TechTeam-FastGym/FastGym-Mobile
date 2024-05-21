@@ -36,12 +36,11 @@ app.*.symbols
 app.*.map.json
 
 # Android Studio
-/android/.gradle/
-/android/.idea/
-/android/.settings/
-/android/build/
-/android/app/build/
-/android/local.properties
+android/.gradle/
+android/.idea/
+android/.settings/
+android/local.properties
+android/app/build/
 
 # iOS
 ios/.generated/
