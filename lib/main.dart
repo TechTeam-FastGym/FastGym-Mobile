@@ -1,3 +1,4 @@
+import 'package:fastgym_mobile/ui/sceens/Feeding/Alimentacion.dart';
 import 'package:fastgym_mobile/ui/sceens/Home/homeScreen.dart';
 import 'package:fastgym_mobile/ui/sceens/SignIn/loginScreen.dart';
 import 'package:fastgym_mobile/ui/sceens/SignIn/registerScreen.dart';
@@ -19,6 +20,8 @@ class MyApp extends StatelessWidget {
           '/': (context) => LoginScreen(),
           '/register': (context) => RegisterScreen(),
           '/home': (context) => TypeuserScreen(),
+
+          '/alimentacion': (context) => Alimentacion(),
         });
   }
 }
