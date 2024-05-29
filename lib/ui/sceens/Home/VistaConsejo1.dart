@@ -11,7 +11,7 @@ class _VistaTiendaState extends State<VistaTienda> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           Container(
@@ -76,8 +76,8 @@ class _VistaTiendaState extends State<VistaTienda> {
 
           Image.asset(
             'assets/image/grafric.png',
-            width: 80,
-            height: 80,
+            width: 250,
+            height: 85,
           ),
 
           Text(
@@ -88,7 +88,6 @@ class _VistaTiendaState extends State<VistaTienda> {
             ),
           ),
 
-          // 4. un texto Color(0xFF0086BF) en bold tamaño 15
           Text(
             'Gatorade',
             style: TextStyle(
@@ -102,16 +101,23 @@ class _VistaTiendaState extends State<VistaTienda> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.arrow_back),
-              Image.asset('assets/image/gatorade.png'),
-              Text(
-                'Si usted esta sediento ahora mismo, cómprelo ahora! si no lo está no falta mucho para tener que usarla',
-                style: TextStyle(
-                  color: Color(0xFF0086BF),
-                  fontSize: 10,
+              Icon(Icons.arrow_back,color: Color(0xFF0086BF)),
+              Image.asset('assets/image/gatorade.png',width: 80),
+
+              Container(
+                width: 170,
+                child: Text(
+                  'Si usted está sediento ahora mismo, cómprelo ahora! Si no lo está, no falta mucho para tener que usarla',
+                  style: TextStyle(
+                    color: Color(0xFF0086BF),
+                    fontSize: 12,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 6,
                 ),
               ),
-              Icon(Icons.arrow_forward),
+
+              Icon(Icons.arrow_forward,color: Color(0xFF0086BF)),
             ],
           ),
           SizedBox(height: 20),
