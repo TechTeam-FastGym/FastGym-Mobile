@@ -7,10 +7,13 @@ class Assets {
   static const String imageAdultBar = 'assets/image/adult-bar.jpg';
   static const String imageAdultRun = 'assets/image/adult-run.jpg';
   static const String imageBreakfast = 'assets/image/breakfast.png';
+  static const String imageCielo = 'assets/image/cielo.png';
   static const String imageDinner = 'assets/image/dinner.png';
   static const String imageEmojiPoultryleg = 'assets/image/emoji_poultryleg.png';
   static const String imageFat = 'assets/image/Fat.jpg';
   static const String imageFlaco = 'assets/image/Flaco.jpg';
+  static const String imageGatorate = 'assets/image/gatorade.png';
+  static const String imageGrafics = 'assets/image/grafric.png';
   static const String imageIconEgghardboiled = 'assets/image/icon_egghardboiled.png';
   static const String imageIllustrationSalad = 'assets/image/illustration_Salad.png';
   static const String imageLunch = 'assets/image/lunch.png';
