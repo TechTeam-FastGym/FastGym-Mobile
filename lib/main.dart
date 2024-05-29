@@ -1,3 +1,11 @@
+<<<<<<< Updated upstream
+=======
+import 'package:fastgym_mobile/ui/sceens/Feeding/Alimentacion.dart';
+import 'package:fastgym_mobile/ui/sceens/Home/VistaCarrito.dart';
+import 'package:fastgym_mobile/ui/sceens/Home/homeScreen.dart';
+import 'package:fastgym_mobile/ui/sceens/SignIn/loginScreen.dart';
+import 'package:fastgym_mobile/ui/sceens/SignIn/registerScreen.dart';
+>>>>>>> Stashed changes
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,8 +19,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+<<<<<<< Updated upstream
       title: 'Flutter Demo',
       theme: ThemeData(
+=======
+        debugShowCheckedModeBanner: false,
+        title: 'Fast Gym',
+        initialRoute: '/',
+        routes: {
+          '/': (context) => Alimentacion(),
+          '/register': (context) => RegisterScreen(),
+          '/home': (context) => TypeuserScreen(),
+>>>>>>> Stashed changes
 
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
