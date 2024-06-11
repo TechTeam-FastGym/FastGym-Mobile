@@ -1,6 +1,7 @@
 import 'package:fastgym_mobile/ui/sceens/Feeding/Alimentacion.dart';
 import 'package:fastgym_mobile/ui/sceens/Home/VistaConsejo1.dart';
 import 'package:fastgym_mobile/ui/sceens/Home/VistaTienda.dart';
+import 'package:fastgym_mobile/ui/sceens/profile/profileScreen.dart';
 import 'package:flutter/material.dart';
 
 class menu extends StatefulWidget {
@@ -43,11 +44,18 @@ class _menuState extends State<menu> {
 
                             IconButton(
                               onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ProfileScreen(),
+                                  ),
+                                );
                               },
                               icon: Icon(
                                 Icons.person_pin,
                                 size: 50,
                                 color: Colors.white,
+
                               ),
                             ),
                           ],
