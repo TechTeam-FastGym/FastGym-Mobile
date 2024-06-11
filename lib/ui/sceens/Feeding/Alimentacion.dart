@@ -33,10 +33,6 @@ class _AlimentacionState extends State<Alimentacion> {
     });
   }
 
-  void menu(){
-    Navigator.pushReplacementNamed(context, '/menu');
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -357,7 +353,9 @@ class _AlimentacionState extends State<Alimentacion> {
                 child: Row(
                   children: [
                     ElevatedButton(
-                      onPressed: menu,
+                      onPressed: (){
+                        Navigator.pop(context);
+                      },
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.zero, // Elimina el padding interno del botón
                         shape: CircleBorder(), // Forma circular
