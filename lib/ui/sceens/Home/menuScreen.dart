@@ -1,3 +1,6 @@
+import 'package:fastgym_mobile/ui/sceens/Feeding/Alimentacion.dart';
+import 'package:fastgym_mobile/ui/sceens/Home/VistaConsejo1.dart';
+import 'package:fastgym_mobile/ui/sceens/Home/VistaTienda.dart';
 import 'package:flutter/material.dart';
 
 class menu extends StatefulWidget {
@@ -72,9 +75,22 @@ class _menuState extends State<menu> {
 
                   Column(
                     children: [
-                      Icon(Icons.add_shopping_cart_sharp,
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => VistaTienda(),
+                            ),
+                          );
+                        },
+                        icon: Icon(
+                          Icons.add_shopping_cart_sharp,
                           size: 80,
-                          color: Color(0xFF0086BF)),
+                          color: Color(0xFF0086BF),
+                        ),
+                      ),
+
                       Text('Tienda',
                         style: TextStyle(
                           color: Color(0xFF0086BF),
@@ -87,9 +103,22 @@ class _menuState extends State<menu> {
 
                   Column(
                     children: [
-                      Icon(Icons.fastfood_rounded,
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Alimentacion(),
+                            ),
+                          );
+                        },
+                        icon: Icon(
+                          Icons.fastfood_rounded,
                           size: 80,
-                          color: Color(0xFF0086BF)),
+                          color: Color(0xFF0086BF),
+                        ),
+                      ),
+
                       Text('Alimentacion',
                         style: TextStyle(
                           color: Color(0xFF0086BF),
@@ -102,9 +131,23 @@ class _menuState extends State<menu> {
 
                   Column(
                     children: [
-                      Icon(Icons.book_outlined,
+
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => VistaConsejo(),
+                            ),
+                          );
+                        },
+                        icon: Icon(
+                          Icons.book_outlined,
                           size: 80,
-                          color: Color(0xFF0086BF)),
+                          color: Color(0xFF0086BF),
+                        ),
+                      ),
+
                       Text('Consejos',
                         style: TextStyle(
                           color: Color(0xFF0086BF),

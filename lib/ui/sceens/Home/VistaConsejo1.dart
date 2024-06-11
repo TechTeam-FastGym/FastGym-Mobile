@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class VistaTienda extends StatefulWidget {
-  const VistaTienda({Key? key});
+class VistaConsejo extends StatefulWidget {
+  const VistaConsejo({Key? key});
 
   @override
-  State<VistaTienda> createState() => _VistaTiendaState();
+  State<VistaConsejo> createState() => _VistaConsejoState();
 }
 
-class _VistaTiendaState extends State<VistaTienda> {
+class _VistaConsejoState extends State<VistaConsejo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,7 +124,7 @@ class _VistaTiendaState extends State<VistaTienda> {
           ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
-            backgroundColor: Color(0xFF0086BF),
+              backgroundColor: Color(0xFF0086BF),
             ),
             child: Text(
               'Comprelo aqui',
@@ -156,5 +156,4 @@ class _VistaTiendaState extends State<VistaTienda> {
   }
 }
 
-void main() => runApp(MaterialApp(home: VistaTienda()));
-
+void main() => runApp(MaterialApp(home: VistaConsejo()));
