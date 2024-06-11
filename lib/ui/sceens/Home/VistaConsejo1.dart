@@ -34,7 +34,7 @@ class _VistaConsejoState extends State<VistaConsejo> {
                       ),
                       Divider(
                         color: Colors.white,
-                        thickness: 4,
+                        thickness: 1.2,
                         indent: 20,
                         endIndent: 20,
                       ),
@@ -135,6 +135,7 @@ class _VistaConsejoState extends State<VistaConsejo> {
 
           Container(
             width: double.infinity,
+            height: 65.4,
             color: Color(0xFF0086BF),
             child: Align(
               alignment: Alignment.centerLeft,

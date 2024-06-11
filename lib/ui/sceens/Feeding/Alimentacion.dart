@@ -36,7 +36,7 @@ class _AlimentacionState extends State<Alimentacion> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.cyan,
+        backgroundColor: Color(0xFF0086BF),
         body:SafeArea(
           child:
           Column(
@@ -57,7 +57,7 @@ class _AlimentacionState extends State<Alimentacion> {
                 children: [
                   Text('Alimentacion',style:
                   TextStyle(
-                    fontSize: 20,
+                    fontSize: 23,
                     color: Colors.white,
                   ),),
                   SizedBox(width: 10,),
@@ -66,15 +66,17 @@ class _AlimentacionState extends State<Alimentacion> {
                     color: Colors.white,)
                 ],
               ),
-              Text('_______________________________________', style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
-              ),),
+              Divider(
+                color: Colors.white,
+                thickness: 1.2,
+                indent: 20,
+                endIndent: 20,
+              ),
 
               Padding(
-                padding: const EdgeInsets.only(left: 0,top: 15, right: 0,bottom: 5),
+                padding: const EdgeInsets.only(left: 0,top: 15, right: 0,bottom: 2),
                 child: Container(
-                    height: 510,
+                    height: 500,
                     width: double.infinity,
                     color: Colors.white,
                     child:
@@ -95,23 +97,23 @@ class _AlimentacionState extends State<Alimentacion> {
 
                                 prefixIcon: Icon(Icons.search, color: Colors.white,),
                                 filled: true,
-                                fillColor: Colors.cyan, // Cambia este color según tus necesidades
+                                fillColor: Color(0xFF0086BF), // Cambia este color según tus necesidades
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(50),
                                   borderSide: BorderSide(
-                                      color: Colors.cyan
+                                      color: Color(0xFF0086BF),
                                   ),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(50.0),
                                   borderSide: BorderSide(
-                                    color: Colors.cyan,
+                                    color: Color(0xFF0086BF),
                                   ),
                                 ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(50.0),
                                   borderSide: BorderSide(
-                                    color: Colors.cyan,
+                                    color: Color(0xFF0086BF),
                                   ),
                                 ),
                               ),
@@ -136,7 +138,7 @@ class _AlimentacionState extends State<Alimentacion> {
                                     width: 70,
                                     height: 70,
                                     decoration: BoxDecoration(
-                                      color: ind_TC==0 ? Colors.cyan : Colors.blue, // Color de fondo del círculo
+                                      color: ind_TC==0 ? Color(0xFF00B2FF) : Color(0xFF0086BF), // Color de fondo del círculo
                                       shape: BoxShape.circle,
                                     ),
                                     child: ClipOval(
@@ -161,7 +163,7 @@ class _AlimentacionState extends State<Alimentacion> {
                                     width: 70,
                                     height: 70,
                                     decoration: BoxDecoration(
-                                      color: ind_TC==1 ? Colors.cyan : Colors.blue, // Color de fondo del círculo
+                                      color: ind_TC==1 ? Color(0xFF00B2FF) : Color(0xFF0086BF), // Color de fondo del círculo
                                       shape: BoxShape.circle,
                                     ),
                                     child: ClipOval(
@@ -186,7 +188,7 @@ class _AlimentacionState extends State<Alimentacion> {
                                     width: 70,
                                     height: 70,
                                     decoration: BoxDecoration(
-                                      color: ind_TC==2 ? Colors.cyan : Colors.blue, // Color de fondo del círculo
+                                      color: ind_TC==2 ? Color(0xFF00B2FF) : Color(0xFF0086BF), // Color de fondo del círculo
                                       shape: BoxShape.circle,
                                     ),
                                     child: ClipOval(
@@ -207,21 +209,21 @@ class _AlimentacionState extends State<Alimentacion> {
                             children: [
 
                               Text('Desayuno', style: TextStyle(
-                                  color: Colors.cyan,
+                                  color: Color(0xFF0086BF),
                                   fontWeight: FontWeight.bold
                               ),),
 
                               SizedBox(width: 40,),
 
                               Text('Almuerzo', style: TextStyle(
-                                  color: Colors.cyan,
+                                  color: Color(0xFF0086BF),
                                   fontWeight: FontWeight.bold
                               ),),
 
                               SizedBox(width: 55,),
 
                               Text('Cena', style: TextStyle(
-                                  color: Colors.cyan,
+                                  color: Color(0xFF0086BF),
                                   fontWeight: FontWeight.bold
                               ),),
 
@@ -232,7 +234,7 @@ class _AlimentacionState extends State<Alimentacion> {
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                           decoration: BoxDecoration(
-                            color: Colors.cyan,
+                            color: Color(0xFF0086BF),
                             borderRadius: BorderRadius.circular(30), // Bordes circulares
                           ),
                           child: Text(
@@ -262,7 +264,7 @@ class _AlimentacionState extends State<Alimentacion> {
                                 width:70,
                                 height: 70,
                                 decoration: BoxDecoration(
-                                  color: Colors.cyan, // Color de fondo del círculo
+                                  color: Color(0xFF0086BF), // Color de fondo del círculo
                                   shape: BoxShape.circle,
                                 ),
                                 child: ClipOval(
@@ -281,7 +283,7 @@ class _AlimentacionState extends State<Alimentacion> {
                                 width:70,
                                 height: 70,
                                 decoration: BoxDecoration(
-                                  color: Colors.cyan, // Color de fondo del círculo
+                                  color: Color(0xFF0086BF), // Color de fondo del círculo
                                   shape: BoxShape.circle,
                                 ),
                                 child: ClipOval(
@@ -300,7 +302,7 @@ class _AlimentacionState extends State<Alimentacion> {
                                 width:70,
                                 height: 70,
                                 decoration: BoxDecoration(
-                                  color: Colors.cyan, // Color de fondo del círculo
+                                  color: Color(0xFF0086BF), // Color de fondo del círculo
                                   shape: BoxShape.circle,
                                 ),
                                 child: ClipOval(
@@ -322,21 +324,21 @@ class _AlimentacionState extends State<Alimentacion> {
                             children: [
 
                               Text('Proteina', style: TextStyle(
-                                  color: Colors.cyan,
+                                  color: Color(0xFF0086BF),
                                   fontWeight: FontWeight.bold
                               ),),
 
                               SizedBox(width: 50,),
 
                               Text('Grasas', style: TextStyle(
-                                  color: Colors.cyan,
+                                  color: Color(0xFF0086BF),
                                   fontWeight: FontWeight.bold
                               ),),
 
                               SizedBox(width: 47,),
 
                               Text('Azucares', style: TextStyle(
-                                  color: Colors.cyan,
+                                  color: Color(0xFF0086BF),
                                   fontWeight: FontWeight.bold
                               ),),
 
@@ -350,25 +352,21 @@ class _AlimentacionState extends State<Alimentacion> {
               ),
 
               Container(
-                child: Row(
-                  children: [
-                    ElevatedButton(
-                      onPressed: (){
-                        Navigator.pop(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.zero, // Elimina el padding interno del botón
-                        shape: CircleBorder(), // Forma circular
-                        backgroundColor: Colors.cyan,
-                      ),
-
-                      child:
-                      Icon(
-                        Icons.arrow_circle_left_outlined,
-                        size: 50,
-                        color: Colors.white,
-                      ),) // Espacio flexible que empuja el ícono a la izquierda
-                  ],
+                width: double.infinity,
+                height: 50,
+                color: Color(0xFF0086BF),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(
+                      Icons.arrow_circle_left_outlined,
+                      size: 50,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
             ],
