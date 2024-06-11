@@ -1,3 +1,4 @@
+import 'package:fastgym_mobile/ui/sceens/Home/VistaCarrito.dart';
 import 'package:flutter/material.dart';
 
 class VistaTienda extends StatefulWidget {
@@ -34,7 +35,7 @@ class _VistaTiendaState extends State<VistaTienda> {
                       ),
                       Divider(
                         color: Colors.white,
-                        thickness: 4,
+                        thickness: 1.2,
                         indent: 20,
                         endIndent: 20,
                       ),
@@ -49,7 +50,20 @@ class _VistaTiendaState extends State<VistaTienda> {
                     children: [
                       Icon(Icons.person, size: 30, color: Colors.white),
                       SizedBox(height: 20),
-                      Icon(Icons.shopping_cart, size: 30, color: Colors.white),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => VistaCarrito(),
+                        ),
+                      );
+                    },
+                    icon: Icon(
+                      Icons.shopping_cart,
+                      size: 30,
+                      color: Colors.white,
+                    ),),
                     ],
                   ),
                 ),

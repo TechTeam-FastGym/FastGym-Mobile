@@ -63,8 +63,8 @@ class _menuState extends State<menu> {
                         ),
 
                         Divider(
-                          color: Colors.grey,
-                          thickness: 3,
+                          color: Colors.white,
+                          thickness: 1.2,
                           indent: 20,
                           endIndent: 20,
                         ),
