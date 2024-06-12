@@ -140,54 +140,61 @@ class _VistaConsejoState extends State<VistaConsejo> {
           ),
 
           SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+          Container(
+            height: 438.8,
+            child:
+            Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
 
-              IconButton(
-                  onPressed: (){
-                    if (currentIndex > 0) {
-                      _cambiarConsejo(currentIndex - 1);
-                    }
-                  }, icon: Icon(Icons.arrow_back, color: Color(0xFF0086BF))),
+                      IconButton(
+                          onPressed: (){
+                            if (currentIndex > 0) {
+                              _cambiarConsejo(currentIndex - 1);
+                            }
+                          }, icon: Icon(Icons.arrow_back, color: Color(0xFF0086BF))),
 
-              Image.asset(consejos[currentIndex]['imagen'], width: 80),
+                      Image.asset(consejos[currentIndex]['imagen'], width: 80),
 
-              Container(
-                width: 170,
-                child: Text(
-                  consejos[currentIndex]['texto'],
-                  style: TextStyle(
-                    color: Color(0xFF0086BF),
-                    fontSize: 12,
+                      Container(
+                        width: 170,
+                        child: Text(
+                          consejos[currentIndex]['texto'],
+                          style: TextStyle(
+                            color: Color(0xFF0086BF),
+                            fontSize: 12,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 6,
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          if (currentIndex < consejos.length - 1) {
+                            _cambiarConsejo(currentIndex + 1);
+                          }
+                        },
+                        icon: Icon(Icons.arrow_forward, color: Color(0xFF0086BF)),
+                      ),
+
+                    ],
                   ),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 6,
-                ),
-              ),
-              IconButton(
-                onPressed: () {
-                  if (currentIndex < consejos.length - 1) {
-                    _cambiarConsejo(currentIndex + 1);
-                  }
-                },
-                icon: Icon(Icons.arrow_forward, color: Color(0xFF0086BF)),
-              ),
+                  SizedBox(height: 20),
 
-            ],
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF0086BF),
+                    ),
+                    child: Text(
+                      'Comprelo aqui',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),]),
           ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xFF0086BF),
-            ),
-            child: Text(
-              'Comprelo aqui',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-          SizedBox(height: 226.9),
+
 
           Container(
             width: double.infinity,
