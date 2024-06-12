@@ -1,8 +1,12 @@
+import 'package:fastgym_mobile/features/feeding.dart';
 import 'package:fastgym_mobile/ui/sceens/profile/profileScreen.dart';
 import 'package:flutter/material.dart';
 
+import '../../../features/user.dart';
+
 class Alimentacion extends StatefulWidget {
-  const Alimentacion({super.key});
+  final Usuario usuario;
+  const Alimentacion({Key? key, required this.usuario}) : super(key: key);
 
   @override
   State<Alimentacion> createState() => _AlimentacionState();
@@ -10,13 +14,27 @@ class Alimentacion extends StatefulWidget {
 
 class _AlimentacionState extends State<Alimentacion> {
 
-  final List<String> title_food = ['Desayuno #12','Almuerzo #15','Cena #19'];
   int ind_TC=0;
 
   final List<String> img_food = ['assets/image/breakfast.png','assets/image/lunch.png','assets/image/dinner.png'];
-  final List<String> protein =['5/10','9/10','5/10'];
-  final List<String> fat =['9/10','7/10','1/10'];
-  final List<String> sugar =['5/10','3/10','4/10'];
+
+  List<Alimentaciones> alimentos = [
+    Alimentaciones(id: 1, nombre: "Ensalada", tipo: "Desayuno", proteina: 9, grasa: 3, azucares: 5),
+    Alimentaciones(id: 2, nombre: "Salmon", tipo: "Desayuno", proteina: 8, grasa: 5, azucares: 1),
+    Alimentaciones(id: 3, nombre: "Arroz", tipo: "Desayuno", proteina: 3, grasa: 1, azucares: 2),
+    Alimentaciones(id: 4, nombre: "Aguacate", tipo: "Almuerzo", proteina: 2, grasa: 8, azucares: 1),
+    Alimentaciones(id: 5, nombre: "Almendra", tipo: "Almuerzo", proteina: 5, grasa: 2, azucares: 6),
+    Alimentaciones(id: 6, nombre: "Almendra", tipo: "Almuerzo", proteina: 3, grasa: 8, azucares: 4),
+    Alimentaciones(id: 7, nombre: "Almendra", tipo: "Cena", proteina: 5, grasa: 7, azucares: 2),
+    Alimentaciones(id: 8, nombre: "Almendra", tipo: "Cena", proteina: 3, grasa: 4, azucares: 8),
+    Alimentaciones(id: 9, nombre: "Almendra", tipo: "Cena", proteina: 1, grasa: 5, azucares: 6),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    ind_TC = 0;
+  }
 
   void change0() {
     setState(() {
@@ -88,7 +106,7 @@ class _AlimentacionState extends State<Alimentacion> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ProfileScreen(),
+                              builder: (context) => ProfileScreen(usuario: widget.usuario),
                             ),
                           );
                         },
@@ -246,7 +264,7 @@ class _AlimentacionState extends State<Alimentacion> {
                             borderRadius: BorderRadius.circular(30), // Bordes circulares
                           ),
                           child: Text(
-                            '${title_food[ind_TC]}',
+                            '${alimentos[ind_TC].nombre}',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
@@ -277,7 +295,7 @@ class _AlimentacionState extends State<Alimentacion> {
                                 ),
                                 child: ClipOval(
                                     child: Center(
-                                      child: Text('${protein[ind_TC]}', style: TextStyle(
+                                      child: Text('${alimentos[ind_TC].proteina}/10', style: TextStyle(
                                         fontSize: 26,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
@@ -296,7 +314,7 @@ class _AlimentacionState extends State<Alimentacion> {
                                 ),
                                 child: ClipOval(
                                     child: Center(
-                                      child: Text('${fat[ind_TC]}', style: TextStyle(
+                                      child: Text('${alimentos[ind_TC].grasa}/10', style: TextStyle(
                                         fontSize: 26,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
@@ -315,7 +333,7 @@ class _AlimentacionState extends State<Alimentacion> {
                                 ),
                                 child: ClipOval(
                                     child: Center(
-                                      child: Text('${sugar[ind_TC]}', style: TextStyle(
+                                      child: Text('${alimentos[ind_TC].azucares}/10', style: TextStyle(
                                         fontSize: 26,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,

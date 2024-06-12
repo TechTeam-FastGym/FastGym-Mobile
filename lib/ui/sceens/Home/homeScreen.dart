@@ -24,7 +24,7 @@ class _TypeuserScreen extends State<TypeuserScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => planScreen(),
+        builder: (context) => planScreen(usuario: widget.user),
       ),
     );
   }

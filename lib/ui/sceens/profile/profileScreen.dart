@@ -1,31 +1,36 @@
 // lib/ui/screens/profile/profile_screen.dart
 import 'package:flutter/material.dart';
+import '../../../features/user.dart';
 import '../../../persistence/preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+
+  final Usuario usuario;
+
+  const ProfileScreen({Key? key, required this.usuario}) : super(key: key);
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final TextEditingController emailController = TextEditingController(text: 'carlosfernandez@gmail.com');
+  TextEditingController emailController = TextEditingController();
   final TextEditingController oldPasswordController = TextEditingController();
   final TextEditingController newPasswordController = TextEditingController();
   final TextEditingController confirmPasswordController = TextEditingController();
-  String currentPlan = 'Medio';
+  String currentPlan = '';
 
   @override
   void initState() {
     super.initState();
+    emailController = TextEditingController(text: widget.usuario.email);
     _loadPlan();
   }
 
   void _loadPlan() async {
     String? plan = await SharedPreferencesHelper.getUserPlan();
     setState(() {
-      currentPlan = plan ?? 'Medio';
+      currentPlan = plan ?? widget.usuario.plan.toString();
     });
   }
 
@@ -33,6 +38,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     await SharedPreferencesHelper.saveUserPlan(plan);
     setState(() {
       currentPlan = plan;
+      widget.usuario.plan = currentPlan;
     });
   }
 
@@ -146,7 +152,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             SizedBox(height: 16),
             Text(
-              'Carlos Fernandez',
+              '${widget.usuario.nombre}',
               style: TextStyle(
                 color: Color(0xFF0086BF),
                 fontSize: 30,

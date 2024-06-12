@@ -1,14 +1,40 @@
 import 'package:fastgym_mobile/ui/sceens/profile/profileScreen.dart';
 import 'package:flutter/material.dart';
 
+import '../../../features/user.dart';
+
 class VistaConsejo extends StatefulWidget {
-  const VistaConsejo({Key? key});
+  final Usuario usuario;
+
+  const VistaConsejo({Key? key, required this.usuario}) : super(key: key);
 
   @override
   State<VistaConsejo> createState() => _VistaConsejoState();
 }
 
 class _VistaConsejoState extends State<VistaConsejo> {
+
+  int currentIndex = 0; // Índice actual
+  List<Map<String, dynamic>> consejos = [
+    {
+      'imagen': 'assets/image/gatorade.png',
+      'texto':
+      'Si usted está sediento ahora mismo, cómprelo ahora! Si no lo está, no falta mucho para tener que usarla'
+    },
+    {
+      'imagen': 'assets/image/cielo.png',
+      'texto':
+      'Si usted está sediento ahora mismo, cómprelo ahora!'
+    },
+
+  ];
+
+  void _cambiarConsejo(int newIndex) {
+    setState(() {
+      currentIndex = newIndex;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +79,7 @@ class _VistaConsejoState extends State<VistaConsejo> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ProfileScreen(),
+                              builder: (context) => ProfileScreen(usuario: widget.usuario),
                             ),
                           );
                         },
@@ -117,13 +143,20 @@ class _VistaConsejoState extends State<VistaConsejo> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.arrow_back,color: Color(0xFF0086BF)),
-              Image.asset('assets/image/gatorade.png',width: 80),
+
+              IconButton(
+                  onPressed: (){
+                    if (currentIndex > 0) {
+                      _cambiarConsejo(currentIndex - 1);
+                    }
+                  }, icon: Icon(Icons.arrow_back, color: Color(0xFF0086BF))),
+
+              Image.asset(consejos[currentIndex]['imagen'], width: 80),
 
               Container(
                 width: 170,
                 child: Text(
-                  'Si usted está sediento ahora mismo, cómprelo ahora! Si no lo está, no falta mucho para tener que usarla',
+                  consejos[currentIndex]['texto'],
                   style: TextStyle(
                     color: Color(0xFF0086BF),
                     fontSize: 12,
@@ -132,8 +165,15 @@ class _VistaConsejoState extends State<VistaConsejo> {
                   maxLines: 6,
                 ),
               ),
+              IconButton(
+                onPressed: () {
+                  if (currentIndex < consejos.length - 1) {
+                    _cambiarConsejo(currentIndex + 1);
+                  }
+                },
+                icon: Icon(Icons.arrow_forward, color: Color(0xFF0086BF)),
+              ),
 
-              Icon(Icons.arrow_forward,color: Color(0xFF0086BF)),
             ],
           ),
           SizedBox(height: 20),
@@ -172,5 +212,3 @@ class _VistaConsejoState extends State<VistaConsejo> {
     );
   }
 }
-
-void main() => runApp(MaterialApp(home: VistaConsejo()));

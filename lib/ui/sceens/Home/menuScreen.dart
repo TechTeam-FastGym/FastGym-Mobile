@@ -4,8 +4,13 @@ import 'package:fastgym_mobile/ui/sceens/Home/VistaTienda.dart';
 import 'package:fastgym_mobile/ui/sceens/profile/profileScreen.dart';
 import 'package:flutter/material.dart';
 
+import '../../../features/user.dart';
+
 class menu extends StatefulWidget {
-  const menu({super.key});
+
+  final Usuario usuario;
+
+  const menu({Key? key, required this.usuario}) : super(key: key);
 
   @override
   State<menu> createState() => _menuState();
@@ -47,7 +52,7 @@ class _menuState extends State<menu> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => ProfileScreen(),
+                                    builder: (context) => ProfileScreen(usuario: widget.usuario),
                                   ),
                                 );
                               },
@@ -61,7 +66,7 @@ class _menuState extends State<menu> {
                           ],
                         ),
 
-                        Text('Bienvenido Carlos',
+                        Text('Bienvenido ${widget.usuario.nombre}',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 30,
@@ -116,7 +121,7 @@ class _menuState extends State<menu> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => Alimentacion(),
+                              builder: (context) => Alimentacion(usuario: widget.usuario),
                             ),
                           );
                         },
@@ -145,7 +150,7 @@ class _menuState extends State<menu> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => VistaConsejo(),
+                              builder: (context) => VistaConsejo(usuario: widget.usuario),
                             ),
                           );
                         },

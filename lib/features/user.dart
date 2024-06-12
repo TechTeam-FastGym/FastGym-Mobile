@@ -7,9 +7,8 @@ class Usuario
   final String nombre;
   final String email;
   String tipoUsuario;
-  final String plan;
+  String plan;
   final List<ProductoDeportivo> carrito;
-  final List<Alimentacion> comidasRecomendadas;
 
   Usuario({
     required this.id,
@@ -18,7 +17,6 @@ class Usuario
     required this.tipoUsuario,
     required this.plan,
     required this.carrito,
-    required this.comidasRecomendadas
   });
 
   void agregarProductoAlCarrito(ProductoDeportivo producto) {
@@ -29,7 +27,4 @@ class Usuario
     carrito.remove(producto);
   }
 
-  void agregarComidaRecomendada(Alimentacion comida) {
-    comidasRecomendadas.add(comida);
-  }
 }

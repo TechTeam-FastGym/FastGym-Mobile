@@ -1,12 +1,12 @@
-class Alimentacion {
-  String id;
+class Alimentaciones {
+  int id;
   String nombre;
   String tipo;
   int proteina; // Valor del 1 al 10
   int grasa; // Valor del 1 al 10
   int azucares; // Valor del 1 al 10
 
-  Alimentacion({
+  Alimentaciones({
     required this.id,
     required this.nombre,
     required this.tipo,
