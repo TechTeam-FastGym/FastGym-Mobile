@@ -106,7 +106,7 @@ class planScreen extends StatelessWidget {
               ),
               Container(
                 width: double.infinity,
-                height: 100,
+                height: 80,
                 color: Color(0xFF0086BF),
                 child: Align(
                   alignment: Alignment.centerLeft,

@@ -1,3 +1,4 @@
+import 'package:fastgym_mobile/ui/sceens/profile/profileScreen.dart';
 import 'package:flutter/material.dart';
 
 class Alimentacion extends StatefulWidget {
@@ -36,171 +37,178 @@ class _AlimentacionState extends State<Alimentacion> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFF0086BF),
-        body:SafeArea(
-          child:
-          Column(
-            children: [
+      backgroundColor: Colors.grey[200],
+      body: Column(
+        children: [
+          Container(
+            color: Color(0xFF0086BF),
+            height: 180,
+            child: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Alimentacion',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25,
+                              color: Colors.white,
+                            ),
+                          ),
+                          SizedBox(width: 10,),
+                          Icon(Icons.restaurant,
+                            size: 25,
+                            color: Colors.white,),
+                        ],
+                      ),
 
-              Row(
-                children: [
-                  Spacer(), // Espacio flexible que empuja el ícono a la derecha
-                  Icon(
-                    Icons.person,
-                    size: 30,
-                    color: Colors.white,
+                      Divider(
+                        color: Colors.white,
+                        thickness: 1.2,
+                        indent: 20,
+                        endIndent: 20,
+                      ),
+                      SizedBox(height: 20),
+                    ],
                   ),
-                ],
+                ),
+                Positioned(
+                  top: 50,
+                  right: 20,
+                  child: Column(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProfileScreen(),
+                            ),
+                          );
+                        },
+                        icon: Icon(
+                          Icons.person_pin,
+                          size: 50,
+                          color: Colors.white,
+
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 40,top: 20, right: 40,bottom: 0),
+            child: TextField(
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Color(0xFF0086BF),
+                hintText: 'Buscar',
+                hintStyle: TextStyle(color: Colors.white),
+                prefixIcon: Icon(Icons.search, color: Colors.white),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                  borderSide: BorderSide.none,
+                ),
+                contentPadding: EdgeInsets.symmetric(vertical: 8.0),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+
+          // Lista de Cards
+          Expanded(
+              child: GridView.count(
+                crossAxisCount: 1,
                 children: [
-                  Text('Alimentacion',style:
-                  TextStyle(
-                    fontSize: 23,
-                    color: Colors.white,
-                  ),),
-                  SizedBox(width: 10,),
-                  Icon(Icons.restaurant,
-                    size: 20,
-                    color: Colors.white,)
-                ],
-              ),
-              Divider(
-                color: Colors.white,
-                thickness: 1.2,
-                indent: 20,
-                endIndent: 20,
-              ),
-
-              Padding(
-                padding: const EdgeInsets.only(left: 0,top: 15, right: 0,bottom: 2),
-                child: Container(
-                    height: 500,
-                    width: double.infinity,
-                    color: Colors.white,
-                    child:
-                    Column(
+                  Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 0,top: 15, right: 0,bottom: 15),
-                          child: Container(
-                            width: 300,
-                            height: 50,
-                            child: TextField(
-                              style: TextStyle(
-                                color: Colors.white, // Color del texto
-                              ),
-                              decoration: InputDecoration(
-                                labelText: 'Buscar',
-                                labelStyle: TextStyle(color: Colors.white),
-
-                                prefixIcon: Icon(Icons.search, color: Colors.white,),
-                                filled: true,
-                                fillColor: Color(0xFF0086BF), // Cambia este color según tus necesidades
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50),
-                                  borderSide: BorderSide(
-                                      color: Color(0xFF0086BF),
-                                  ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 100, // Ancho del botón
+                              child: ElevatedButton(
+                                onPressed: change0,
+                                style: ElevatedButton.styleFrom(
+                                  padding: EdgeInsets.zero, // Elimina el padding interno del botón
+                                  shape: CircleBorder(), // Forma circular
                                 ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50.0),
-                                  borderSide: BorderSide(
-                                    color: Color(0xFF0086BF),
+                                child: Container(
+                                  width: 70,
+                                  height: 70,
+                                  decoration: BoxDecoration(
+                                    color: ind_TC==0 ? Color(0xFF00B2FF) : Color(0xFF0086BF), // Color de fondo del círculo
+                                    shape: BoxShape.circle,
                                   ),
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(50.0),
-                                  borderSide: BorderSide(
-                                    color: Color(0xFF0086BF),
+                                  child: ClipOval(
+                                    child: Image.asset(
+                                      'assets/image/icon_egghardboiled.png',
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
 
-                        Padding(
-                          padding: const EdgeInsets.only(left: 0,top: 5, right: 0,bottom: 5),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: 100, // Ancho del botón
-                                child: ElevatedButton(
-                                  onPressed: change0,
-                                  style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.zero, // Elimina el padding interno del botón
-                                    shape: CircleBorder(), // Forma circular
+
+                            Container(
+                              width: 100, // Ancho del botón
+                              child: ElevatedButton(
+                                onPressed: change1,
+                                style: ElevatedButton.styleFrom(
+                                  padding: EdgeInsets.zero, // Elimina el padding interno del botón
+                                  shape: CircleBorder(), // Forma circular
+                                ),
+                                child: Container(
+                                  width: 70,
+                                  height: 70,
+                                  decoration: BoxDecoration(
+                                    color: ind_TC==1 ? Color(0xFF00B2FF) : Color(0xFF0086BF), // Color de fondo del círculo
+                                    shape: BoxShape.circle,
                                   ),
-                                  child: Container(
-                                    width: 70,
-                                    height: 70,
-                                    decoration: BoxDecoration(
-                                      color: ind_TC==0 ? Color(0xFF00B2FF) : Color(0xFF0086BF), // Color de fondo del círculo
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: ClipOval(
-                                      child: Image.asset(
-                                        'assets/image/icon_egghardboiled.png',
-                                      ),
+                                  child: ClipOval(
+                                    child: Image.asset(
+                                      'assets/image/emoji_poultryleg.png',
                                     ),
                                   ),
                                 ),
                               ),
+                            ),
 
 
-                              Container(
-                                width: 100, // Ancho del botón
-                                child: ElevatedButton(
-                                  onPressed: change1,
-                                  style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.zero, // Elimina el padding interno del botón
-                                    shape: CircleBorder(), // Forma circular
+                            Container(
+                              width: 100, // Ancho del botón
+                              child: ElevatedButton(
+                                onPressed: change2,
+                                style: ElevatedButton.styleFrom(
+                                  padding: EdgeInsets.zero, // Elimina el padding interno del botón
+                                  shape: CircleBorder(), // Forma circular
+                                ),
+                                child: Container(
+                                  width: 70,
+                                  height: 70,
+                                  decoration: BoxDecoration(
+                                    color: ind_TC==2 ? Color(0xFF00B2FF) : Color(0xFF0086BF), // Color de fondo del círculo
+                                    shape: BoxShape.circle,
                                   ),
-                                  child: Container(
-                                    width: 70,
-                                    height: 70,
-                                    decoration: BoxDecoration(
-                                      color: ind_TC==1 ? Color(0xFF00B2FF) : Color(0xFF0086BF), // Color de fondo del círculo
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: ClipOval(
-                                      child: Image.asset(
-                                        'assets/image/emoji_poultryleg.png',
-                                      ),
+                                  child: ClipOval(
+                                    child: Image.asset(
+                                      'assets/image/illustration_Salad.png',
                                     ),
                                   ),
                                 ),
                               ),
-
-
-                              Container(
-                                width: 100, // Ancho del botón
-                                child: ElevatedButton(
-                                  onPressed: change2,
-                                  style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.zero, // Elimina el padding interno del botón
-                                    shape: CircleBorder(), // Forma circular
-                                  ),
-                                  child: Container(
-                                    width: 70,
-                                    height: 70,
-                                    decoration: BoxDecoration(
-                                      color: ind_TC==2 ? Color(0xFF00B2FF) : Color(0xFF0086BF), // Color de fondo del círculo
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: ClipOval(
-                                      child: Image.asset(
-                                        'assets/image/illustration_Salad.png',
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
 
                         Padding(
@@ -345,33 +353,31 @@ class _AlimentacionState extends State<Alimentacion> {
                             ],
                           ),
                         ),
-                      ],
-                    )
-                ),
-
-              ),
-
-              Container(
-                width: double.infinity,
-                height: 50,
-                color: Color(0xFF0086BF),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(
-                      Icons.arrow_circle_left_outlined,
-                      size: 50,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            ],
+                      ]
+                  )
+                ],
+              )
           ),
-        )
+
+          Container(
+            width: double.infinity,
+            color: Color(0xFF0086BF),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(
+                  Icons.arrow_circle_left_outlined,
+                  size: 50,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
 
   }

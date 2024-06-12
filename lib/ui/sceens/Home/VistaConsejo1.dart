@@ -1,3 +1,4 @@
+import 'package:fastgym_mobile/ui/sceens/profile/profileScreen.dart';
 import 'package:flutter/material.dart';
 
 class VistaConsejo extends StatefulWidget {
@@ -43,11 +44,26 @@ class _VistaConsejoState extends State<VistaConsejo> {
                   ),
                 ),
                 Positioned(
-                  top: 40,
+                  top: 50,
                   right: 20,
                   child: Column(
                     children: [
-                      Icon(Icons.person, size: 30, color: Colors.white),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProfileScreen(),
+                            ),
+                          );
+                        },
+                        icon: Icon(
+                          Icons.person_pin,
+                          size: 50,
+                          color: Colors.white,
+
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -131,7 +147,7 @@ class _VistaConsejoState extends State<VistaConsejo> {
               style: TextStyle(color: Colors.white),
             ),
           ),
-          SizedBox(height: 20),
+          SizedBox(height: 226.9),
 
           Container(
             width: double.infinity,
