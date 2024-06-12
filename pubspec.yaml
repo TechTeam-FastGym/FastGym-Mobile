@@ -16,6 +16,7 @@ dependencies:
 
   cupertino_icons: ^1.0.6
   shared_preferences: ^2.2.3
+  http: ^1.2.1
   # para firebase (login) | cuando no se pone nada, trae las ultimas versiones
 
 
