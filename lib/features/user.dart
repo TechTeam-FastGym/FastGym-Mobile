@@ -1,5 +1,4 @@
 import 'package:fastgym_mobile/features/products.dart';
-import '../ui/sceens/Feeding/Alimentacion.dart';
 
 class Usuario
 {
