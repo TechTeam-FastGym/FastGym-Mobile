@@ -74,7 +74,13 @@ flutter:
     # profile
      - ./assets/image/profile-edit.png
 
-
+    # products
+     - ./assets/image/products/prod1.jpeg
+     - ./assets/image/products/prod1.jpg
+     - ./assets/image/products/prod3.jpg
+     - ./assets/image/products/prod4.jpg
+     - ./assets/image/products/prod5.jpg
+     - ./assets/image/products/prod6.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
