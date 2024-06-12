@@ -1,5 +1,6 @@
 import 'package:fastgym_mobile/ui/sceens/Home/VistaCarrito.dart';
 import 'package:flutter/material.dart';
+import 'package:fastgym_mobile/features/products.dart';
 
 class VistaTienda extends StatefulWidget {
   const VistaTienda({Key? key});
@@ -94,51 +95,54 @@ class _VistaTiendaState extends State<VistaTienda> {
             child: GridView.count(
               crossAxisCount: 2,
               children: List.generate(
-                6, // numero de objetos
-                    (index) => Card(
-                  margin: EdgeInsets.all(10),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  color: Colors.white,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/image/cielo.png',
-                        width: 80,
-                        height: 80,
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        'Agua cielo',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                productos.length, // numero de objetos
+                (index) {
+                  final producto = productos[index];
+                  return Card(
+                    margin: EdgeInsets.all(10),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    color: Colors.white,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          producto.imagen,
+                          width: 80,
+                          height: 80,
                         ),
-                      ),
-                      SizedBox(height: 5),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            '\$10', // Precio
-                            style: TextStyle(
-                              color: Colors.red, // Precio en rojo
-                              fontSize: 14,
+                        SizedBox(height: 10),
+                        Text(
+                          producto.nombre,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                        SizedBox(height: 5),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              's/${producto.precio}', // Precio
+                              style: TextStyle(
+                                color: Colors.red, // Precio en rojo
+                                fontSize: 14,
+                              ),
                             ),
-                          ),
-                          SizedBox(width: 5),
-                          Icon(
-                            Icons.add_circle, // Icono de +
-                            size: 20,
-                            color: Colors.blue, // Icono en azul
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                            SizedBox(width: 5),
+                            Icon(
+                              Icons.add_circle, // Icono de +
+                              size: 20,
+                              color: Colors.blue, // Icono en azul
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  );
+                }
               ),
             ),
           ),
