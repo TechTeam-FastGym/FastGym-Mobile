@@ -1,9 +1,23 @@
+import 'package:fastgym_mobile/features/user.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'menuScreen.dart';
 
 class planScreen extends StatelessWidget {
-  const planScreen({super.key});
+
+  final Usuario usuario;
+
+  const planScreen({super.key, required this.usuario});
+
+  void _setPlan(String plan, BuildContext context) {
+    usuario.plan = plan;
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => menu(usuario: usuario),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +45,7 @@ class planScreen extends StatelessWidget {
                       backgroundImage: AssetImage('assets/image/Flaco.jpg'),
                       radius: 65,
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => menu(),
-                        ),
-                      );
-                    },
+                    onPressed: () => _setPlan('Delgado', context),
                   ),
                   Text(
                     'Delgado',
@@ -58,14 +65,7 @@ class planScreen extends StatelessWidget {
                       backgroundImage: AssetImage('assets/image/Medium.jpg'),
                       radius: 65,
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => menu(),
-                        ),
-                      );
-                    },
+                    onPressed: () => _setPlan('Medio', context),
                   ),
                   Text(
                     'Medio',
@@ -85,14 +85,7 @@ class planScreen extends StatelessWidget {
                       backgroundImage: AssetImage('assets/image/Fat.jpg'),
                       radius: 65,
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => menu(),
-                        ),
-                      );
-                    },
+                    onPressed: () => _setPlan('Grueso', context),
                   ),
                   Text(
                     'Grueso',

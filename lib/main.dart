@@ -21,12 +21,11 @@ class MyApp extends StatelessWidget {
 
     Usuario usuario = Usuario(
       id: 1,
-      nombre: 'Juan Perez',
-      email: 'juan@example.com',
+      nombre: 'John Doe',
+      email: 'john.doe@example.com',
       tipoUsuario: '',
-      plan: 'Plan Básico',
+      plan: '',
       carrito: [],
-      comidasRecomendadas: [],
     );
 
     return MaterialApp(
@@ -39,7 +38,7 @@ class MyApp extends StatelessWidget {
           '/register': (context) => RegisterScreen(),
           '/home': (context) => TypeuserScreen(user: usuario),
 
-          '/alimentacion': (context) => Alimentacion(),
+          '/alimentacion': (context) => Alimentacion(usuario: usuario),
         });
   }
 }
