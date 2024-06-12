@@ -168,7 +168,7 @@ class _menuState extends State<menu> {
 
                   Container(
                     width: double.infinity,
-                    height: 100,
+                    height: 65,
                     color: Color(0xFF0086BF),
                     child: Align(
                       alignment: Alignment.centerLeft,
