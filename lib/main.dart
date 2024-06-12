@@ -5,6 +5,8 @@ import 'package:fastgym_mobile/ui/sceens/SignIn/registerScreen.dart';
 import 'package:fastgym_mobile/ui/sceens/Welcome/welcomeScreen.dart';
 
 import 'package:flutter/material.dart';
+
+import 'features/user.dart';
 void main() {
 
 
@@ -16,6 +18,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    Usuario usuario = Usuario(
+      id: 1,
+      nombre: 'Juan Perez',
+      email: 'juan@example.com',
+      tipoUsuario: '',
+      plan: 'Plan Básico',
+      carrito: [],
+      comidasRecomendadas: [],
+    );
+
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Fast Gym',
@@ -24,7 +37,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => WelcomeScreen(),
           '/login': (context) => LoginScreen(),
           '/register': (context) => RegisterScreen(),
-          '/home': (context) => TypeuserScreen(),
+          '/home': (context) => TypeuserScreen(user: usuario),
 
           '/alimentacion': (context) => Alimentacion(),
         });

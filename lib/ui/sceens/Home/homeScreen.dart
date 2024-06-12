@@ -2,14 +2,33 @@ import 'package:fastgym_mobile/ui/sceens/Home/planScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../features/user.dart';
+
 class TypeuserScreen extends StatefulWidget {
-  const TypeuserScreen({super.key});
+  final Usuario user;
+
+  const TypeuserScreen({super.key, required this.user});
 
   @override
   State<TypeuserScreen> createState() => _TypeuserScreen();
 }
 
 class _TypeuserScreen extends State<TypeuserScreen> {
+
+  void _setTipoUsuario(String tipo)
+  {
+    setState(() {
+      widget.user.tipoUsuario = tipo;
+    });
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => planScreen(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,14 +55,7 @@ class _TypeuserScreen extends State<TypeuserScreen> {
                       backgroundImage: AssetImage('assets/image/adult-run.jpg'),
                       radius: 100,
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => planScreen(),
-                        ),
-                      );
-                    },
+                    onPressed: () => _setTipoUsuario('Deportista'),
                   ),
                   Text(
                     'Deportista',
@@ -63,14 +75,7 @@ class _TypeuserScreen extends State<TypeuserScreen> {
                       backgroundImage: AssetImage('assets/image/adult-bar.jpg'),
                       radius: 90,
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => planScreen(),
-                        ),
-                      );
-                    },
+                    onPressed: () => _setTipoUsuario('Deportista'),
                   ),
                   Text(
                     'Fitness',
