@@ -1,6 +1,7 @@
-import 'package:fastgym_mobile/ui/sceens/Home/VistaCarrito.dart';
 import 'package:flutter/material.dart';
 import 'package:fastgym_mobile/features/products.dart';
+import 'package:fastgym_mobile/ui/sceens/Home/VistaCarrito.dart';
+import 'package:fastgym_mobile/features/carrito.dart';
 
 class VistaTienda extends StatefulWidget {
   const VistaTienda({Key? key});
@@ -10,6 +11,8 @@ class VistaTienda extends StatefulWidget {
 }
 
 class _VistaTiendaState extends State<VistaTienda> {
+  final Carrito carrito = Carrito();  // Instancia del carrito
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,20 +54,21 @@ class _VistaTiendaState extends State<VistaTienda> {
                     children: [
                       Icon(Icons.person, size: 30, color: Colors.white),
                       SizedBox(height: 20),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => VistaCarrito(),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => VistaCarrito(carrito: carrito),
+                            ),
+                          );
+                        },
+                        icon: Icon(
+                          Icons.shopping_cart,
+                          size: 30,
+                          color: Colors.white,
                         ),
-                      );
-                    },
-                    icon: Icon(
-                      Icons.shopping_cart,
-                      size: 30,
-                      color: Colors.white,
-                    ),),
+                      ),
                     ],
                   ),
                 ),
@@ -89,14 +93,12 @@ class _VistaTiendaState extends State<VistaTienda> {
               style: TextStyle(color: Colors.white),
             ),
           ),
-
-          // Lista de Cards
           Expanded(
             child: GridView.count(
               crossAxisCount: 2,
               children: List.generate(
-                productos.length, // numero de objetos
-                (index) {
+                productos.length,
+                    (index) {
                   final producto = productos[index];
                   return Card(
                     margin: EdgeInsets.all(10),
@@ -132,21 +134,27 @@ class _VistaTiendaState extends State<VistaTienda> {
                               ),
                             ),
                             SizedBox(width: 5),
-                            Icon(
-                              Icons.add_circle, // Icono de +
-                              size: 20,
-                              color: Colors.blue, // Icono en azul
+                            IconButton(
+                              icon: Icon(
+                                Icons.add_circle, // Icono de +
+                                size: 20,
+                                color: Colors.blue, // Icono en azul
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  carrito.agregarProducto(producto);
+                                });
+                              },
                             ),
                           ],
                         ),
                       ],
                     ),
                   );
-                }
+                },
               ),
             ),
           ),
-
           Container(
             width: double.infinity,
             color: Color(0xFF0086BF),

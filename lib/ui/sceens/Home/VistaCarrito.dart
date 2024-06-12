@@ -1,17 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:fastgym_mobile/features/products.dart';
+import 'package:fastgym_mobile/features/carrito.dart';
 
 class CounterButton extends StatefulWidget {
   final double buttonHeight;
   final double buttonWidth;
+  final void Function(int) onChanged;
+  final int initialValue;
 
-  CounterButton({this.buttonHeight = 35.0, this.buttonWidth = 110.0});
+  CounterButton({this.buttonHeight = 35.0, this.buttonWidth = 110.0, required this.onChanged, this.initialValue = 0});
 
   @override
   _CounterButtonState createState() => _CounterButtonState();
 }
 
 class _CounterButtonState extends State<CounterButton> {
-  int _counter = 0;
+  late int _counter;
+
+  @override
+  void initState() {
+    super.initState();
+    _counter = widget.initialValue;
+  }
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+      widget.onChanged(_counter);
+    });
+  }
+
+  void _decrementCounter() {
+    setState(() {
+      if (_counter > 0) {
+        _counter--;
+        widget.onChanged(_counter);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +53,7 @@ class _CounterButtonState extends State<CounterButton> {
         children: [
           IconButton(
             icon: Icon(Icons.remove, color: Colors.white),
-            onPressed: () {
-              setState(() {
-                _counter--;
-              });
-            },
+            onPressed: _decrementCounter,
           ),
           Text(
             '$_counter',
@@ -39,11 +61,7 @@ class _CounterButtonState extends State<CounterButton> {
           ),
           IconButton(
             icon: Icon(Icons.add, color: Colors.white),
-            onPressed: () {
-              setState(() {
-                _counter++;
-              });
-            },
+            onPressed: _incrementCounter,
           ),
         ],
       ),
@@ -52,13 +70,21 @@ class _CounterButtonState extends State<CounterButton> {
 }
 
 class VistaCarrito extends StatefulWidget {
-  const VistaCarrito({super.key});
+  final Carrito carrito;
+
+  const VistaCarrito({required this.carrito, super.key});
 
   @override
   State<VistaCarrito> createState() => _VistaCarritoState();
 }
 
 class _VistaCarritoState extends State<VistaCarrito> {
+  void _updateProductQuantity(ProductoDeportivo producto, int cantidad) {
+    setState(() {
+      widget.carrito.actualizarProducto(producto, cantidad);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,10 +152,13 @@ class _VistaCarritoState extends State<VistaCarrito> {
             ),
           ),
           Expanded(
-            child: ListView(
+            child: ListView.builder(
               padding: const EdgeInsets.all(16.0),
-              children: [
-                Card(
+              itemCount: widget.carrito.totalItems,
+              itemBuilder: (context, index) {
+                final producto = widget.carrito.items[index];
+                final cantidad = widget.carrito.getCantidad(producto);
+                return Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),
@@ -148,7 +177,7 @@ class _VistaCarritoState extends State<VistaCarrito> {
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(15.0),
-                            child: Image.asset('assets/image/cielo.png', fit: BoxFit.cover),
+                            child: Image.asset(producto.imagen, fit: BoxFit.cover),
                           ),
                         ),
                         SizedBox(width: 16),
@@ -156,23 +185,27 @@ class _VistaCarritoState extends State<VistaCarrito> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              's/2.50',
-                              style: TextStyle(color: Colors.red, fontSize: 16,fontWeight: FontWeight.bold),
+                              's/${producto.precio}',
+                              style: TextStyle(color: Colors.red, fontSize: 16, fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              'Agua Cielo',
-                              style: TextStyle(color: Colors.blue, fontSize: 16,fontWeight: FontWeight.bold),
+                              producto.nombre,
+                              style: TextStyle(color: Colors.blue, fontSize: 16, fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
                         Spacer(),
-                        CounterButton(),
+                        CounterButton(
+                          initialValue: cantidad,
+                          onChanged: (cantidad) {
+                            _updateProductQuantity(producto, cantidad);
+                          },
+                        ),
                       ],
                     ),
                   ),
-                ),
-                // Agrega más tarjetas similares si es necesario
-              ],
+                );
+              },
             ),
           ),
           Container(
@@ -198,4 +231,5 @@ class _VistaCarritoState extends State<VistaCarrito> {
   }
 }
 
-void main() => runApp(MaterialApp(home: VistaCarrito()));
+void main() => runApp(MaterialApp(home: VistaCarrito(carrito: Carrito())));
+
