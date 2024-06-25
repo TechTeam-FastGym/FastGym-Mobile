@@ -93,7 +93,7 @@ class _menuState extends State<menu> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => VistaTienda(),
+                              builder: (context) => VistaTienda(usuario: widget.usuario),
                             ),
                           );
                         },

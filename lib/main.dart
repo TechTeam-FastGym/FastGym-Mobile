@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
       tipoUsuario: '',
       plan: '',
       carrito: [],
+      money: 300.00
     );
 
     return MaterialApp(

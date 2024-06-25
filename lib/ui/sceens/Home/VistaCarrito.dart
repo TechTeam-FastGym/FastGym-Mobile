@@ -1,3 +1,4 @@
+import 'package:fastgym_mobile/features/user.dart';
 import 'package:flutter/material.dart';
 import 'package:fastgym_mobile/features/products.dart';
 import 'package:fastgym_mobile/features/carrito.dart';
@@ -39,6 +40,8 @@ class _CounterButtonState extends State<CounterButton> {
     });
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -70,15 +73,30 @@ class _CounterButtonState extends State<CounterButton> {
 }
 
 class VistaCarrito extends StatefulWidget {
+  final Usuario usuario;
   final Carrito carrito;
 
-  const VistaCarrito({required this.carrito, super.key});
+  const VistaCarrito({Key? key, required this.usuario, required this.carrito}) : super(key: key);
 
   @override
   State<VistaCarrito> createState() => _VistaCarritoState();
 }
 
 class _VistaCarritoState extends State<VistaCarrito> {
+  double precioTotal=0.00;
+
+
+  void _payTotal(){
+    precioTotal=0.00;
+    int tamanio = widget.carrito.totalItems;
+    for (var i = 0; i < tamanio; i++){
+      final producto = widget.carrito.items[i];
+      final cant = widget.carrito.getCantidad(producto);
+
+      precioTotal=precioTotal+producto.precio*cant;
+    }
+  }
+
   void _updateProductQuantity(ProductoDeportivo producto, int cantidad) {
     setState(() {
       widget.carrito.actualizarProducto(producto, cantidad);
@@ -87,6 +105,9 @@ class _VistaCarritoState extends State<VistaCarrito> {
 
   @override
   Widget build(BuildContext context) {
+
+    _payTotal();
+
     return Scaffold(
       backgroundColor: Colors.grey[200],
       body: Column(
@@ -158,55 +179,104 @@ class _VistaCarritoState extends State<VistaCarrito> {
               itemBuilder: (context, index) {
                 final producto = widget.carrito.items[index];
                 final cantidad = widget.carrito.getCantidad(producto);
-                return Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
-                  ),
-                  elevation: 0,
-                  color: Colors.transparent,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 80,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15.0),
-                            child: Image.asset(producto.imagen, fit: BoxFit.cover),
-                          ),
-                        ),
-                        SizedBox(width: 16),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+
+                return Column(
+                  children: [
+                    Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      elevation: 0,
+                      color: Colors.transparent,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
                           children: [
-                            Text(
-                              's/${producto.precio}',
-                              style: TextStyle(color: Colors.red, fontSize: 16, fontWeight: FontWeight.bold),
+                            Container(
+                              height: 80,
+                              width: 80,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(15.0),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(15.0),
+                                child: Image.asset(producto.imagen, fit: BoxFit.cover),
+                              ),
                             ),
-                            Text(
-                              producto.nombre,
-                              style: TextStyle(color: Colors.blue, fontSize: 16, fontWeight: FontWeight.bold),
+                            SizedBox(width: 16),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  's/${producto.precio}',
+                                  style: TextStyle(color: Colors.red, fontSize: 16, fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  producto.nombre,
+                                  style: TextStyle(color: Colors.blue, fontSize: 16, fontWeight: FontWeight.bold),
+                                ),
+                              ],
                             ),
+                            Spacer(),
+                            CounterButton(
+                              initialValue: cantidad,
+                              onChanged: (cantidad) {
+                                _updateProductQuantity(producto, cantidad);
+                              },
+                            ),
+
                           ],
                         ),
-                        Spacer(),
-                        CounterButton(
-                          initialValue: cantidad,
-                          onChanged: (cantidad) {
-                            _updateProductQuantity(producto, cantidad);
-                          },
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
+                    //PAY BUTTON
+                    if(index==  widget.carrito.totalItems-1)
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          children: [
+                            Text('TOTAL:', style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                                color: Colors.blue
+                            ),),
+                            Spacer(),
+                            Text('${precioTotal}', style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blue
+                            ),)
+                          ],
+                        ),
+                      ),
+                    if(index==  widget.carrito.totalItems-1)
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                            onPressed: (){
+                              showModalBottomSheet(
+                                // para pantalla completa -> isScrollControlled: true,
+                                context: context,
+                                builder: (context)=>
+                                    buildMessagePay(widget.usuario,precioTotal),);
+                            },
+                            child: Text("Pagar", style: TextStyle(
+                              fontSize: 20,
+                            ),)),
+                      ),
+                    if(index==  widget.carrito.totalItems-1)
+                      Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Saldo: ${widget.usuario.money}", style: TextStyle(
+                            fontSize: 20,
+                          ),)
+                      )
+                  ],
                 );
               },
             ),
+
           ),
           Container(
             width: double.infinity,
@@ -225,11 +295,41 @@ class _VistaCarritoState extends State<VistaCarrito> {
               ),
             ),
           ),
-        ],
+          ],
       ),
     );
   }
 }
 
-void main() => runApp(MaterialApp(home: VistaCarrito(carrito: Carrito())));
+buildMessagePay(Usuario usuario, double precio) {
+
+  double saldoRestante = usuario.getMoney() - precio;
+  if(saldoRestante >= 0.00) usuario.setMoney(saldoRestante);
+
+  return Container(
+      width: 500,
+      height: 200,
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          children: [
+
+            SizedBox(height: 20,),
+
+            if(saldoRestante >= 0.00)
+              Text('Pago Exitoso', style: TextStyle(
+                fontSize: 25
+              ),)
+            else
+              Text('Saldo Insuficiente', style: TextStyle(
+                  fontSize: 25
+              ),),
+
+
+          ],
+        ),
+      ),
+    );
+}
+
 

@@ -8,6 +8,7 @@ class Usuario
   String tipoUsuario;
   String plan;
   final List<ProductoDeportivo> carrito;
+  double money;
 
   Usuario({
     required this.id,
@@ -16,6 +17,7 @@ class Usuario
     required this.tipoUsuario,
     required this.plan,
     required this.carrito,
+    this.money = 100.00,
   });
 
   void agregarProductoAlCarrito(ProductoDeportivo producto) {
@@ -24,6 +26,14 @@ class Usuario
 
   void eliminarProductoDelCarrito(ProductoDeportivo producto) {
     carrito.remove(producto);
+  }
+
+  void setMoney(double money){
+    this.money=money;
+  }
+
+  double getMoney(){
+    return this.money;
   }
 
 }
