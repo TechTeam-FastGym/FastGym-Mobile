@@ -1,10 +1,13 @@
+import 'package:fastgym_mobile/features/user.dart';
 import 'package:flutter/material.dart';
 import 'package:fastgym_mobile/features/products.dart';
 import 'package:fastgym_mobile/ui/sceens/Home/VistaCarrito.dart';
 import 'package:fastgym_mobile/features/carrito.dart';
 
 class VistaTienda extends StatefulWidget {
-  const VistaTienda({Key? key});
+  final Usuario usuario;
+
+  const VistaTienda({Key? key, required this.usuario}) : super(key: key);
 
   @override
   State<VistaTienda> createState() => _VistaTiendaState();
@@ -59,7 +62,7 @@ class _VistaTiendaState extends State<VistaTienda> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => VistaCarrito(carrito: carrito),
+                              builder: (context) => VistaCarrito(usuario: widget.usuario ,carrito: carrito),
                             ),
                           );
                         },
@@ -178,4 +181,3 @@ class _VistaTiendaState extends State<VistaTienda> {
   }
 }
 
-void main() => runApp(MaterialApp(home: VistaTienda()));

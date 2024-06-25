@@ -1,3 +1,4 @@
+import 'package:fastgym_mobile/ui/sceens/Home/VistaTienda.dart';
 import 'package:fastgym_mobile/ui/sceens/profile/profileScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -184,7 +185,14 @@ class _VistaConsejoState extends State<VistaConsejo> {
                   SizedBox(height: 20),
 
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => VistaTienda(usuario: widget.usuario),
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF0086BF),
                     ),
